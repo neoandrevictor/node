@@ -183,6 +183,17 @@ module.exports=function(app){
         request.assert('descricao','A descrição é obrigatória').notEmpty();
 
 
+        const errors = request.validationErrors();
+
+        if (errors){
+            response.format({
+                html: () => response.status(400).render('cadastro',{errors})
+                ,json: () => response.status(400).json({errors})
+            })
+
+            return;
+        }
+
         const conexao= app.config.connectionFactory();
         const produtoDao= new app.repository.produtoDao(conexao);
         console.log(request.body)
