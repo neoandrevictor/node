@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Produtos</title>
+    <script
+  src="https://code.jquery.com/jquery-3.3.1.js"
+  integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
+  crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="static/css/bootstrap.css">
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.css">
+  
+    <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.js"></script>
+    <script>
+        $(document).ready( function () {
+            $('#tabela').DataTable( {
+        "language": {
+            "url": "//cdn.datatables.net/plug-ins/1.10.19/i18n/Portuguese-Brasil.json"
+        }
+    });
+        } );
+    </script>
+    <style>
+       
+
+        input:focus{
+
+            border:none;
+        }
+
+    </style>
+    <script>
+        function cadastrar(){
+
+            titulo=document.getElementsByName("titulo")[0].value;
+            preco=document.getElementsByName("preco")[0].value;
+            descricao=document.getElementsByName("descricao")[0].value;
+
+
+            if (titulo!="" && preco!= "" && descricao!="") {
+
+              console.log(titulo + "," + preco + "," + descricao);
+
+                document.getElementsByName("titulo")[0].value="";
+                document.getElementsByName("preco")[0].value="";
+                document.getElementsByName("descricao")[0].value="";
+
+                tr=document.createElement("tr");
+
+                tdtitulo=document.createElement("td");
+                tdpreco=document.createElement("td");
+                tddescricao=document.createElement("td");
+                
+                tdtitulo.innerText=titulo;
+                tdpreco.innerText=preco;
+                tddescricao.innerText=descricao;
+
+                tr.appendChild(tdtitulo);
+                tr.appendChild(tdpreco);
+                tr.appendChild(tddescricao);
+
+                trinput=document.getElementById("trinput");
+                document.getElementById("trinput").outerHTML="";
+
+                document.getElementById("tabelacorpo").appendChild(tr);
+                document.getElementById("tabelacorpo").appendChild(trinput);
+
+                document.getElementsByName("titulo")[0].focus();
+                
+            
+            }
+
+         
+
+        }
+    
+    </script>
+</head>
+<body>
+    <div class="container">
+        <h1>Lista de produtos</h1>
+        
+        <table id="tabela" class="table table-striped table-hover">
+            <thead>
+                <tr>
+                    <th>Título</th>
+                    <th>Preço</th>
+                    <th>Descrição</th>
+                </tr>
+            </thead>
+            <tbody id="tabelacorpo">
+               
+                <% for(let livro of livros) { %>
+                    <tr>
+                        <td>
+                            <%= livro.titulo %>
+                        </td>
+                        <td>
+                            <%= livro.preco %>
+                        </td>
+                        <td>
+                            <%= livro.descricao %>
+                        </td>
+                    </tr>
+                    <% } %><tr style="display:none;" id="trinput" onchange="cadastrar();">
+                    
+                        <td><input placeholder="Título" name="titulo"></td>
+                        <td><input placeholder="Preço" name="preco"></td>
+                        <td><input placeholder="Descrição" name="descricao"></td>
+                    
+                    </tr>
+            </tbody>
+        </table>
+        <table class="table table-striped table-hover">
+       
+    </div>
+    <a class="btn btn-primary" href="/">Home</a>
+    <a class="btn btn-secondary" href="/cadastro">Cadastro</a>
+</body>
+</html>
