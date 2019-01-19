@@ -11,6 +11,20 @@
   src="https://code.jquery.com/jquery-3.3.1.js"
   integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
   crossorigin="anonymous"></script>
+    
+    <style>
+        body {
+            background: #00d2ff;  /* fallback for old browsers */
+            background: -webkit-linear-gradient(to right, #3a7bd5, #00d2ff);  /* Chrome 10-25, Safari 5.1-6 */
+            background: linear-gradient(to right, #3a7bd5, #00d2ff); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+        }
+
+        table{
+
+            background-color: rgb(255,255,255,0.75) !important;
+        }
+
+    </style>
     <style>
         input{
 
@@ -29,6 +43,7 @@
             cursor:pointer;
         }
 
+        
     </style>
     <script>
         
@@ -152,7 +167,12 @@
     </script>
 </head>
 <body>
+    <nav class="navbar navbar-dark bg-dark">
+            <a class="btn btn-primary" href="/">Home</a>
+            <a class="btn btn-primary" href="/produtos">Produtos</a>
+    </nav>
     <div class="container">
+       
         <h1>Cadastro de produtos</h1>
         
         <form id="formulario" action="/cadastro" method="post">
@@ -194,8 +214,7 @@
         </table>
        
         </form>
-        <a class="btn btn-primary" href="/">Home</a>
-        <a class="btn btn-primary" href="/produtos">Produtos</a>
+
     </div>
    
 </body>
